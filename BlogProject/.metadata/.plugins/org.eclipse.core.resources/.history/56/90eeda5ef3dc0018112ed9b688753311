@@ -1,0 +1,31 @@
+package com.blogmiddleware.RestController;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.amit.cruddemobackend.DAO.FriendDAO;
+import com.amit.cruddemobackend.model.User;
+
+@RestController
+public class FriendController {
+
+	@Autowired
+	private FriendDAO friendDAO;
+	@GetMapping("/suggestedUsers")
+	public ResponseEntity<?> suggestedUsers(HttpSession httpSession)
+	{
+		String email = (String)httpSession.getAttribute("email");
+		if(email==null) {
+			return new ResponseEntity<String>("{\"message\":\"Unauthorized access please sign-in\"}",HttpStatus.UNAUTHORIZED);
+		}
+		List<User> suggestedUsers = friendDAO.listOfSuggestedUsers(email);
+		return new ResponseEntity<List<User>>(suggestedUsers,HttpStatus.OK);
+	}
+}

@@ -1,0 +1,5 @@
+package com.amit.cruddemobackend.DAOImpl;
+
+public class ProfilePictureDAOImpl {
+
+}

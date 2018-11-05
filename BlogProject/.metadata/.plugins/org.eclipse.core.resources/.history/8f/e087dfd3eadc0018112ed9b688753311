@@ -1,0 +1,5 @@
+package com.amit.cruddemobackend.model;
+
+public class Friend {
+
+}

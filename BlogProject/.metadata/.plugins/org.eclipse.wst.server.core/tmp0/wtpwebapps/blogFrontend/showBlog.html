@@ -1,0 +1,35 @@
+<div class="container"   ng-controller="BlogController">
+
+
+	<div class="panel panel-info">
+		<div class="panel-heading" >
+			<p  >
+			{{ob.blogId}}
+			</p><br> <b>Author :
+				{{ob.postedBy}}</b><br>
+			<b>Posted On: {{ob.postedOn }}</b>
+		</div>
+		<div class="panel-body">
+		    <p >{{ob.content}}</p><!-- content is blogPost.blogContent as HTML -->
+		   
+		</div>
+		<div>
+		<button class="btn btn-info" ng-click="incLikes(ob.blogId)">{{ob.liked}}&nbsp;Like</button>
+		<button class="btn btn-info" ng-click="incDislikes(ob.blogId)">{{ob.disliked}}&nbsp;Dislike</button>
+		</div>
+		<textarea rows="3" cols="30" ng-model="commentText" required ng-init="getcomments()">
+		
+		</textarea>
+		<button class="btn btn-success" ng-click="addComment(ob,commentText)">POST COMMENT</button>
+		<br>
+<br>
+<br>
+<h4>Comments:</h4>
+<ul>
+<li ng-repeat="comment in comments">
+{{comment}}
+</li>
+</ul>
+	</div>
+
+</div>
